@@ -31,8 +31,7 @@ public class UpdateClientPassword extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {	
 		//Liaison avec le fichier JSP (view)
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(ServletHelper.UPDATEPASSWORD);
 		dispatcher.forward(request, response);
@@ -43,8 +42,8 @@ public class UpdateClientPassword extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String currentPass = request.getParameter("currentPass");
-		String newPass1 = request.getParameter("newPass1");
-		String newPass2 = request.getParameter("newPass2");
+		String newPass1    = request.getParameter("newPass1");
+		String newPass2    = request.getParameter("newPass2");
 		
 		HttpSession session = request.getSession(false); 
 		Client currentClient = (Client)session.getAttribute("client");

@@ -9,6 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.ynov.appbancairev2.model.Transaction;
+import com.ynov.appbancairev2.validation.PasswordValidation;
 
 public class TransactionDAO {
 	private static Logger logger = LogManager.getLogger(TransactionDAO.class.getName());
@@ -46,5 +47,24 @@ public class TransactionDAO {
 			em.close();	
 		}
 		return transacs;
+	}
+
+	public static boolean addTransaction(Transaction t) {
+		EntityManager em = DAOManager.getInstance().createEntityManager();
+		try {
+			em.getTransaction().begin();
+			em.persist(t);
+			em.getTransaction().commit();
+			logger.info("La transaction "+t.getLibelle()+" a été ajouté en base !");
+			return true;
+		}
+		catch(Exception e) {
+			logger.error(e.getMessage());
+			logger.error(e.getCause());
+			return false;
+		}
+		finally {
+			em.close();
+		}
 	}
 }

@@ -16,43 +16,21 @@
 <body>
 <br>
 <h2><fmt:message key="AccountTitle" /></h2>
+
 <table>
-	<tr><td><fmt:message key="NumAccount" /></td> <td><fmt:message key="Libelle" /></td></tr>
-	<c:forEach items="${Comptes}" var="compte">
+	<tr><td><fmt:message key="NumAccount" /></td> <td><fmt:message key="Libelle" /></td><td><fmt:message key="solde" /></td></tr>
+	<c:forEach var="compte" items="${Comptes}">
 	<tr>
-		<td>${compte.num}     </td>
-		<td>${compte.libelle} </td>
-		<td><a href="/AppBancairev2/Transactions/${compte.num}"> <input type="button" value=<fmt:message key="Select" />> </a> </td>
+		<td>${compte.key.num}      </td>
+		<td>${compte.key.libelle}  </td>
+		<td>${compte.value} &euro; </td>
+		<td><a href="/AppBancairev2/Transactions/${compte.key.num}"> 
+				<input type="button" value=<fmt:message key="Select"/> >
+			</a> 
+		</td>
 	</tr>
 	</c:forEach>
 </table>
-
-
-
-
-<p>Ajouter un client </p>
-<form action="Name" method="post">
-    <div>
-        <label for="nomC">Nom :</label>
-        <textarea type="text" name="nomC"></textarea>
-    </div>
-    <div>
-        <label for="prenomC">Prenom :</label>
-        <textarea type="text" name="prenomC"></textarea>
-    </div>
-    <div>
-        <label for="loginC">Login :</label>
-        <textarea type="text" name="loginC"></textarea>
-    </div>
- 	<div>
-        <label for="passC">password :</label>
-        <textarea type="text" name="passC"></textarea>
-    </div>
-    <div class="button">
-        <button type="submit">ajouter</button>
-    </div>
-</form>
-
 
 
 <!-- Include dynamique -->

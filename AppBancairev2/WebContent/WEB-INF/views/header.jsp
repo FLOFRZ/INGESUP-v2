@@ -8,9 +8,9 @@
 <fmt:setLocale value="${language}" />
 <fmt:setBundle basename="messages.messages"/>
 
-<h1><a href="ClientAccount"><fmt:message key="HeaderTitle"/></a></h1>
+<h1><a href="http://localhost:8080/AppBancairev2/ClientAccount"><fmt:message key="HeaderTitle"/></a></h1>
 
-<table>sss
+<table>
 	<TR>
 		<td><p>${Client.nom} ${Client.prenom} <br>
  			   ${Client.clientID}</p> 
@@ -24,13 +24,18 @@
 			</form>
  		</td>
  		<td>
- 			<a href="UpdateClientPassword" >
+ 			<a href="/AppBancairev2/UpdateClientPassword" >
  				<button type="button"> <fmt:message key="updatepass" /> </button>
  			</a>
  		</td>
  		<td>
- 			<a href="">
+ 			<a href="/AppBancairev2/AddClient">
  				<button type="button"> <fmt:message key="addClient"/>  </button>
+ 			</a>
+ 		</td>
+ 		<td>
+ 			<a href="/AppBancairev2/Transfer">
+ 				<button type="button"> <fmt:message key="transfer"/>  </button>
  			</a>
  		</td>
 	</TR>

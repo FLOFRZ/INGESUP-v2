@@ -11,6 +11,10 @@ public class ServletHelper {
 	public static final String SERVLET_TRANSACTIONS = "/Transactions/*";	
 	public static final String UPDATEPASSWORD = "/WEB-INF/views/updatePassword.jsp";
 	public static final String SERVLET_UPDATEPASSWORD = "/UpdateClientPassword";
+	public static final String ADDCLIENT = "/WEB-INF/views/addClient.jsp";
+	public static final String SERVLET_ADDCLIENT = "/AddClient";
+	public static final String TRANSFER = "/WEB-INF/views/transfer.jsp";
+	public static final String SERVLET_TRANSFER = "/Transfer";
 	
 	public static String getServletUrl(String servlet, HttpServletRequest request) {
 		return request.getContextPath()+servlet;

@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.Query;
+import javax.xml.bind.ValidationEvent;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -80,8 +81,15 @@ public class ClientDAO {
 		return allClients;
 	}
 	
-	public static void addClient(Client newClient) {
+	public static int addClient(Client newClient) {
+		// 0 --> client ajouté
+		// 1 --> password incorrect
+		// 2 --> Erreur dans l'enregistrement en bdd
 		EntityManager em = DAOManager.getInstance().createEntityManager();
+		boolean validPassword = PasswordValidation.validPassword(newClient.getPassword());
+		if (!validPassword)
+			return 1;
+		
 		try {
 			
 			em.getTransaction().begin();
@@ -89,10 +97,12 @@ public class ClientDAO {
 			em.getTransaction().commit();
 			
 			logger.info("Le client "+newClient.getPrenom()+" a été ajouté en base !");
+			return 0;
 		}
 		catch(Exception e) {
 			logger.error(e.getMessage());
 			logger.error(e.getCause());
+			return 2;
 		}
 		finally {
 			em.close();

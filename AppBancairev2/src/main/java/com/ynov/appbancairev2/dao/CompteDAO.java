@@ -7,7 +7,9 @@ import javax.persistence.EntityManager;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.ynov.appbancairev2.model.Client;
 import com.ynov.appbancairev2.model.Compte;
+import com.ynov.appbancairev2.model.Transaction;
 
 public class CompteDAO  {
 
@@ -48,4 +50,29 @@ public class CompteDAO  {
 		return comptes;
 		
 	}
+	
+	public static double getSolde(Compte compte) {
+		double solde=0;
+		List<Transaction> transacs= TransactionDAO.getTransactionsByCompte(compte.getNum());
+		for (Transaction t : transacs) {
+			solde += t.getMontant();
+		}
+		return solde;
+	}
+	
+	public static Compte getCompteById(int id) {
+		Compte c = null;
+		EntityManager em = DAOManager.getInstance().createEntityManager();	
+		try {			
+			c = em.find(Compte.class, id);
+		}
+		catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+		finally {
+			em.close();	
+		}
+		return c;
+	}
+	
 }

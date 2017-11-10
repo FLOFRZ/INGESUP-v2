@@ -14,7 +14,7 @@
 
 	<form action="Accueil" method="post">
 		<p><fmt:message key="s1" />     <input type="text" name="login"></p>
-	    <p><fmt:message key="s2" /> <input type="text" name="password"></p>
+	    <p><fmt:message key="s2" /> <input type="password" name="password"></p>
 	    <button type="submit"><fmt:message key="s3" /></button><br>
 	    <label Name="error">${message}</label>
 	</form>
